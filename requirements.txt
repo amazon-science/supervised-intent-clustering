@@ -1,0 +1,6 @@
+torch==1.8
+sentence-transformers
+hydra-core
+tqdm
+wandb==0.12.6
+tensorboard --upgrade
