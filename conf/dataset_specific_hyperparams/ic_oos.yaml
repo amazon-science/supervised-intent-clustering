@@ -1,0 +1,20 @@
+# Supervised Intent Clustering
+# This is a package to fine-tune language models in order to create clustering-friendly embeddings.
+# Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.  
+# SPDX-License-Identifier: CC-BY-NC-4.0
+
+# 10 domain, 150 intents, 150 avg utt per int
+# 51 train intent, 50 dev intent, 49 test intent
+# 7650 train utt, 7500 dev utt, 7350 test utt
+# unbalanced classes? No
+# notes: 
+dataset_name: 'IC_OOS'
+language_list: ['EN']
+modality: 'english'
+intent_classes_per_batch: 49
+samples_per_class_per_batch: 4
+limit_train_batches: 4
+limit_val_batches: 2
+
+
+

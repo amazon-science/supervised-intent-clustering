@@ -1,0 +1,8 @@
+# Supervised Intent Clustering
+# This is a package to fine-tune language models in order to create clustering-friendly embeddings.
+# Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.  
+# SPDX-License-Identifier: CC-BY-NC-4.0
+
+model_checkpoint_path: null
+
+

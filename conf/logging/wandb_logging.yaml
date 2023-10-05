@@ -1,0 +1,18 @@
+# Supervised Intent Clustering
+# This is a package to fine-tune language models in order to create clustering-friendly embeddings.
+# Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.  
+# SPDX-License-Identifier: CC-BY-NC-4.0
+
+log: false  # set to False to avoid the logging
+
+wandb_arg:
+  _target_: pytorch_lightning.loggers.WandbLogger
+  project: ${train.project}
+  name: ${train.model_name}
+  save_dir: ./
+  log_model: True
+  mode: 'online'
+
+watch:
+  log: 'all'
+  log_freq: 100

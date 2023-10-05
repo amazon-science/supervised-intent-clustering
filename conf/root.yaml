@@ -1,0 +1,21 @@
+# Supervised Intent Clustering
+# This is a package to fine-tune language models in order to create clustering-friendly embeddings.
+# Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.  
+# SPDX-License-Identifier: CC-BY-NC-4.0
+
+# Required to make the "experiments" dir the default one for the output of the models
+hydra:
+  run:
+    dir: /home/ec2-user/experiments/${data.experiment_round}/${train.model_name}/${now:%Y-%m-%d}/${now:%H-%M-%S}
+
+defaults:
+  - _self_
+  - train: default_train
+  - model: default_model
+  - data: default_data
+  - logging: wandb_logging
+  - evaluation: default_evaluation
+  - dataset_specific_hyperparams: pathic_knowledge 
+  
+  # banking77 (ok) / clinc150 (ok) / dstc11 (ok) / hwu64 (ok) / massive (ok) / multi_atis (ok) / pathic_knowledge (ok) / ic_oos
+

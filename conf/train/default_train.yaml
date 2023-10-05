@@ -1,0 +1,46 @@
+# Supervised Intent Clustering
+# This is a package to fine-tune language models in order to create clustering-friendly embeddings.
+# Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.  
+# SPDX-License-Identifier: CC-BY-NC-4.0
+
+# reproducibility
+seed: 42
+
+# model name
+
+# used to name the directory in which model's checkpoints will be stored (experiments/model_name/...)
+model_name: '${model.base_model_name}_${data.dataset}_${data.modality}_${data.intent_classes_per_batch}_${data.samples_per_class_per_batch}_${model.training_objective}_${model.contrastive_margin}_${model.triplet_margin}_${model.C}_${model.r}'
+
+# pl_trainer
+pl_trainer:
+  _target_: pytorch_lightning.Trainer
+  gpus: "${model.gpu}"
+  #accelerator: ’ddp’
+  accumulate_grad_batches: 1
+  gradient_clip_val: null
+  val_check_interval: 1.0
+  limit_train_batches: "${dataset_specific_hyperparams.limit_train_batches}"
+  limit_val_batches: "${dataset_specific_hyperparams.limit_val_batches}"
+  max_epochs: 20
+  fast_dev_run: False
+  precision: 32
+
+# early stopping callback
+# "early_stopping_callback: null" will disable early stopping
+early_stopping_callback:
+  _target_: pytorch_lightning.callbacks.EarlyStopping
+  monitor: val_AUPRC #val_loss
+  mode: max #min
+  patience: 4
+
+# model_checkpoint_callback
+# "model_checkpoint_callback: null" will disable model checkpointing
+model_checkpoint_callback:
+  _target_: pytorch_lightning.callbacks.ModelCheckpoint
+  monitor: val_AUPRC #val_loss
+  mode: max #min
+  verbose: True
+  save_top_k: 1
+  filename: 'checkpoint-val_AUPRC_{val_AUPRC:.4f}-epoch_{epoch:02d}' #'checkpoint-val_loss_{val_loss:.4f}-epoch_{epoch:02d}'
+  auto_insert_metric_name: False
+
