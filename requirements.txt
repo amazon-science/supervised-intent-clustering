@@ -1,4 +1,4 @@
-torch==1.9.0
+torch==1.13.1
 sentence-transformers
 hydra-core
 tqdm
