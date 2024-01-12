@@ -43,9 +43,9 @@ class BasePLModule(pl.LightningModule):
             C=self.conf.model.C, r=self.conf.model.r)
         
         self.balanced_BCE = BalancedBinaryCrossEntropy()
-        self.f1_score = F1Score(threshold=0.8)
-        self.AUROC = AUROC()
-        self.AUPRC = AveragePrecision()
+        self.f1_score = F1Score(task='binary', threshold=0.8)
+        self.AUROC = AUROC(task='binary')
+        self.AUPRC = AveragePrecision(task='binary')
 
     def forward(self, sample) -> dict:
         """
