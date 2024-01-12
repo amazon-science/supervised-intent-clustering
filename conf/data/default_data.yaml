@@ -9,9 +9,9 @@ dataset: "${dataset_specific_hyperparams.dataset_name}"
 
 experiment_round: 0
 
-train_path: 'data/${data.dataset}/train_${data.experiment_round}.csv' #'data/train.csv'
-validation_path: 'data/${data.dataset}/dev_${data.experiment_round}.csv' #'data/dev.csv'
-test_path: 'data/${data.dataset}/test_${data.experiment_round}.csv' #'data/test.csv'
+train_path: 'data/${data.dataset}/train.csv' #'data/train.csv'
+validation_path: 'data/${data.dataset}/dev.csv' #'data/dev.csv'
+test_path: 'data/${data.dataset}/test.csv' #'data/test.csv'
 
 modality: "${dataset_specific_hyperparams.modality}"
 language_list: "${dataset_specific_hyperparams.language_list}"
