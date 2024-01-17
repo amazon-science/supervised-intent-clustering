@@ -31,6 +31,9 @@ class IntentDataset(Dataset):
         intent = self.utterance_intents[index]
         encoded_intent = self.intent_encoding[intent]
 
+        #print("input_ids:", self.encoded_utterances["input_ids"])
+        #print("index:", index, "type(index):", type(index))
+
         item = {
             'utterance_encoding': {
                 'input_ids': self.encoded_utterances['input_ids'][index],
@@ -50,11 +53,19 @@ class IntentDataset(Dataset):
         
         encoded_utterances = self.tokenizer(
             list_of_utterannces,padding=True, truncation=True, return_tensors='pt')
-
         return encoded_utterances
+        #for row_num, utterance in enumerate(list_of_utterannces, start=1):
+        #    print(f"Tokenizing {row_num}...")
+        #    self.tokenizer([utterance], padding=True, truncation=True, return_tensors='pt')
+        #return []
     
     def encode_intents(self, utterance_intent_list: List):
+        for row_num, intent in enumerate(utterance_intent_list, start=1):
+            if type(intent) == float:
+                print(f"{row_num} {intent}")
         intents = list(set(utterance_intent_list))
+
+        #print("intents:", set([type(intent) for intent in intents]))
         intents.sort()
         intent_encoding = {}
         counter = 0          #  TODO: refactor with collections.Counter
