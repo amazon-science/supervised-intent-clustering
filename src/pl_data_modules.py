@@ -63,14 +63,17 @@ class BasePLDataModule(pl.LightningDataModule):
         self.conf = conf
 
     def prepare_data(self, *args, **kwargs):
+        print(f"self.conf.data.train_path: {self.conf.data.train_path}")
         self.train_dataset = IntentDataset(
             hydra.utils.to_absolute_path(self.conf.data.train_path), 
             self.conf.model.sentence_transformer_model_name,
             self.conf.data.language_list)
+        print(f"self.conf.data.validation_path: {self.conf.data.validation_path}")
         self.dev_dataset = IntentDataset(
             hydra.utils.to_absolute_path(self.conf.data.validation_path), 
             self.conf.model.sentence_transformer_model_name,
             self.conf.data.language_list)
+        print(f"self.conf.data.test_path")
         self.test_dataset = IntentDataset(
             hydra.utils.to_absolute_path(self.conf.data.test_path), 
             self.conf.model.sentence_transformer_model_name,
@@ -80,6 +83,7 @@ class BasePLDataModule(pl.LightningDataModule):
         pass
 
     def train_dataloader(self, *args, **kwargs) -> DataLoader:
+        print(f"train_dataset: {self.train_dataset}")
         balanced_batch_sampler = BalancedBatchSampler(
             self.train_dataset, self.conf.data.intent_classes_per_batch, 
             self.conf.data.samples_per_class_per_batch)
