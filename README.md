@@ -82,11 +82,9 @@ This repository has been created with the idea of providing a simple skeleton fr
 start a PyTorch Lightning project. Instead of favoring the customizability, we favored the simplicity
 and we intended this template as a base for building more specific templates based on the user needs
 (for example by forking this one). However, there are several other repositories with different 
-features that you can check if interested. We will list two of them here:
+features that you can check if interested. We will list one of them here:
 - [lucmos/nn-template](https://github.com/lucmos/nn-template): a very nice template with support for
     DVC.
-- [hobogalaxy/lightning-hydra-template](https://github.com/hobogalaxy/lightning-hydra-template):
-    another useful and very well documented template repository.
 
 
 ## How to use it
